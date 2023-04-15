@@ -27,7 +27,6 @@ jobs:
           checkName: PlayMode Test Results
           # coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
       - uses: actions/upload-artifact@v2
-        if: always()
         with:
           name: Test results for PlayMode
           path: ${{ steps.tests.outputs.artifactsPath }}
