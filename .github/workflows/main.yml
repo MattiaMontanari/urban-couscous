@@ -1,5 +1,5 @@
-name: Test project
-
+# Adapted from https://game.ci/docs/github/test-runner#projectpath
+name: unity tests
 on: [push, pull_request]
 
 jobs:
@@ -8,6 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-
+          restore-keys: |
+            Library-
       - uses: game-ci/unity-test-runner@v2
         id: tests
         env:
@@ -17,15 +25,15 @@ jobs:
           artifactsPath: PlayMode-artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: PlayMode Test Results
-          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
+          # coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: Test results for PlayMode
           path: ${{ steps.tests.outputs.artifactsPath }}
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: Coverage results for PlayMode
-          path: ${{ steps.tests.outputs.coveragePath }}
+      # - uses: actions/upload-artifact@v2
+      #   if: always()
+      #   with:
+      #     name: Coverage results for PlayMode
+      #     path: ${{ steps.tests.outputs.coveragePath }}
     
