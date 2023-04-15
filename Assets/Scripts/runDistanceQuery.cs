@@ -5,7 +5,7 @@ using DistanceField;
 
 public class runDistanceQuery : MonoBehaviour
 {
-    distanceQuery ds = new distanceQuery();
+    public distanceQuery ds = new distanceQuery();
     void Start()
     {
         ds.getAllPlayers();
@@ -20,6 +20,5 @@ public class runDistanceQuery : MonoBehaviour
         { 
             Debug.Log("dist = " + d);
         }
-
     }
 }

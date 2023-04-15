@@ -11,7 +11,7 @@ namespace DistanceField
     public class distanceQuery
     {
 
-#if UNITY_STANDALONE_OS || UNITY_EDITOR_OSX
+#if UNITY_STANDALONE_OS || UNITY_EDITOR_OSX || UNITY_INCLUDE_TESTS
         [DllImport("libopengjk_ce", EntryPoint = "csFunction")]
         static extern double gjk(int na, double[,] ia, int nb, double[,] ib);
 #else

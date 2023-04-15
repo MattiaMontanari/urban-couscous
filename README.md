@@ -22,17 +22,18 @@
 
 # Unity calls OpenGJK
 
-This repository presents a mini-app where the game engine Unity invokes the [OpenGJK library](https://www.mattiamontanari.com/opengjk/) to compute the minimum distance between 3D objects. Remember that the Gilbert-Johnson-Keerthi (GJK) algorithm returns the distance between two convex objects. Should be objects be concave, OpenGJK returns the minimum distance between their convex hulls.
+This repository presents a mini-app where the game engine Unity invokes the [OpenGJK library](https://www.mattiamontanari.com/opengjk/) to compute the minimum distance between 3D objects. The purpose of the mini-app is to provide a simple reference for using OpenGJK in your Unity project.
+The project is rather rudimentary and is neither fast nor elegant, but I hope it does the job. It also include a pipeline testing the link between new versions of OpenGJK and Unity.
 
-The purpose of the mini-app is to provide a simple reference for using OpenGJK in your Unity project.
+> Remember that the Gilbert-Johnson-Keerthi (GJK) algorithm returns the distance between two convex objects. Should be objects be concave, OpenGJK returns the minimum distance between their convex hulls.
 
 ## Sample scenes
 
-This is basically a Unity project with two sample scenes that aim to demonstrate how to call OpenGJK in your project. It is quite unlikely at the strategy and scripts provided will fit every single project in need for a GJK implementation, however the scripts I provide are trivial to understand and rewrite to suit your needs.
+This is basically a Unity project with sample scenes that aim to demonstrate how to call OpenGJK in your project. It is quite unlikely that the scripts provided here will fit every single project in need for a GJK implementation, however these scripts are trivial to understand. Use them to learn and rewrite your own to suit your project.
 
 ## Get started
 
-Unity will use the C# interface provided by OpenGJK to call the function that computes the distance. This means that OpenGJK must to be compiled first, and possibly installed, on your system so that Unity can load it.
+Unity uses the C# interface provided by OpenGJK to call the function that computes the distance. This means that OpenGJK must to be compiled on your system and placed somewhere so that Unity can load it.
 
 The key steps are:
 
