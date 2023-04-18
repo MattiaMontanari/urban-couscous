@@ -20,16 +20,24 @@
 < ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS     >
 < FOR A PARTICULAR PURPOSE. See GNU General Public License for details.           -->
 
-# Unity calls OpenGJK
+# Unity Plug-in for OpenGJK
 
-This repository presents a mini-app where the game engine Unity invokes the [OpenGJK library](https://www.mattiamontanari.com/opengjk/) to compute the minimum distance between 3D objects. The purpose of the mini-app is to provide a simple reference for using OpenGJK in your Unity project.
-The project is rather rudimentary and is neither fast nor elegant, but I hope it does the job. It also include a pipeline testing the link between new versions of OpenGJK and Unity.
+This repository presents a mini-app where the game engine Unity invokes the [OpenGJK library](https://www.mattiamontanari.com/opengjk/) to compute the minimum distance between 3D objects. The aim is to provide a simple reference for using OpenGJK as plug-in for in Unity projects.
+A simple Unity project is provided and is neither fast nor elegant, but I hope it does the job.
 
-> Remember that the Gilbert-Johnson-Keerthi (GJK) algorithm returns the distance between two convex objects. Should be objects be concave, OpenGJK returns the minimum distance between their convex hulls.
+A pipeline testing the link between new versions of OpenGJK and Unity is currently under development. In the meantime you can launch the tests manually either in the Unity Editor via command line:
+```bash
+Unity.exe -batchmode -logFile log_fromContainer.log -projectPath unity_basic -runTests -testPlatform playmode -testResults test_results_2.xml
+```
+<!-- /Applications/Unity/Hub/Editor/2022.2.13f1/Unity.app/Contents/MacOS/Unity -batchmode -logFile log_fromContainer.log -projectPath unity_basic -runTests -testPlatform playmode -testResults test_results_2.xml -->
+
+Finally, Remember that the Gilbert-Johnson-Keerthi (GJK) algorithm returns the distance between two convex objects. Should be objects be concave, OpenGJK returns the minimum distance between their convex hulls.
 
 ## Sample scenes
 
-This is basically a Unity project with sample scenes that aim to demonstrate how to call OpenGJK in your project. It is quite unlikely that the scripts provided here will fit every single project in need for a GJK implementation, however these scripts are trivial to understand. Use them to learn and rewrite your own to suit your project.
+The sample scenes that aim to demonstrate how to call OpenGJK in your project. It is quite unlikely that the scripts provided here will fit every single project in need for a GJK implementation, however these scripts are trivial to understand. Use them to learn and rewrite your own to suit your project.
+
+
 
 ## Get started
 
