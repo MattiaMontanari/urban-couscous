@@ -10,6 +10,12 @@ jobs:
       - uses: actions/checkout@main
         with:
           lfs: true
+      - run: sudo apt-get update && sudo apt-get install -y cmake gcc git
+      - run: git clone https://github.com/MattiaMontanari/openGJK.git openGJK
+      - run: cmake -E make_directory openGJK/build
+      - run: cmake -E chdir openGJK/build cmake -DCMAKE_BUILD_TYPE=Release ..
+      - run: cmake --build openGJK/build
+      - run: cp openGJK/build/libopengjk* Assets/Plugins
       - uses: actions/cache@main
         with:
           path: Library
