@@ -4,20 +4,22 @@ using System.Runtime.InteropServices;
 
 public class ns_DistanceField : MonoBehaviour
 {
+#if UNITY_STANDALONE_OS || UNITY_EDITOR_OSX || UNITY_INCLUDE_TESTS
+        [DllImport("libopengjk_ce1", EntryPoint = "csFunction" )]
+        static extern double gjk(int na, double[,] ia, int nb, double[,] ib);
+#else
+        [DllImport("openGJKlib", EntryPoint = "csFunction", CallingConvention = CallingConvention.StdCall)]
+        private static extern float gjk(int na, float[,] ia, int nb, float[,] ib);
+#endif
 }
 
 namespace DistanceField
 {
     public class distanceQuery
     {
+    [DllImport("libopengjk_ce1", EntryPoint = "csFunction")]
+    static extern double gjk(int na, double[,] ia, int nb, double[,] ib);
 
-#if UNITY_STANDALONE_OS || UNITY_EDITOR_OSX || UNITY_INCLUDE_TESTS
-        [DllImport("libopengjk_ce", EntryPoint = "csFunction")]
-        static extern double gjk(int na, double[,] ia, int nb, double[,] ib);
-#else
-        [DllImport("openGJKlib", EntryPoint = "csFunction", CallingConvention = CallingConvention.StdCall)]
-        private static extern float gjk(int na, float[,] ia, int nb, float[,] ib);
-#endif
         Mesh meshA, meshB;
         Mesh[] meshes;
         public double[,] dist;
@@ -77,7 +79,15 @@ namespace DistanceField
                         coordsB[2, k] = (double)vrtx.z;
                     }
 
-                    dist[i, j] = gjk(vrtxA.Length, coordsA, vrtxB.Length, coordsB);
+                    try
+                    {
+                        Marshal.PrelinkAll(typeof(ns_DistanceField));
+                        dist[i, j] = gjk(vrtxA.Length, coordsA, vrtxB.Length, coordsB);
+                    }
+                    finally
+                    {
+                        Debug.Log("Bella la vita");
+                    }
                 }
             }
 
