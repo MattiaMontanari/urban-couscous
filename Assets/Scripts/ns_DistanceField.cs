@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 public class ns_DistanceField : MonoBehaviour
 {
 #if UNITY_STANDALONE_OS || UNITY_EDITOR_OSX || UNITY_INCLUDE_TESTS
-        [DllImport("libopengjk_ce1", EntryPoint = "csFunction" )]
+        [DllImport("libopengjk_ce", EntryPoint = "csFunction" )]
         static extern double gjk(int na, double[,] ia, int nb, double[,] ib);
 #else
         [DllImport("openGJKlib", EntryPoint = "csFunction", CallingConvention = CallingConvention.StdCall)]
@@ -17,7 +17,7 @@ namespace DistanceField
 {
     public class distanceQuery
     {
-    [DllImport("libopengjk_ce1", EntryPoint = "csFunction")]
+    [DllImport("libopengjk_ce", EntryPoint = "csFunction")]
     static extern double gjk(int na, double[,] ia, int nb, double[,] ib);
 
         Mesh meshA, meshB;
