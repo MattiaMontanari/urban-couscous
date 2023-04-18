@@ -26,7 +26,8 @@ This repository presents a mini-app where the game engine Unity invokes the [Ope
 A simple Unity project is provided and is neither fast nor elegant, but I hope it does the job.
 
 A pipeline testing the link between new versions of OpenGJK and Unity is currently under development. In the meantime you can launch the tests manually either in the Unity Editor via command line:
-```bash
+
+``` sh
 Unity.exe -batchmode -logFile log_fromContainer.log -projectPath unity_basic -runTests -testPlatform playmode -testResults test_results_2.xml
 ```
 <!-- /Applications/Unity/Hub/Editor/2022.2.13f1/Unity.app/Contents/MacOS/Unity -batchmode -logFile log_fromContainer.log -projectPath unity_basic -runTests -testPlatform playmode -testResults test_results_2.xml -->
@@ -37,7 +38,9 @@ Finally, Remember that the Gilbert-Johnson-Keerthi (GJK) algorithm returns the d
 
 The sample scenes that aim to demonstrate how to call OpenGJK in your project. It is quite unlikely that the scripts provided here will fit every single project in need for a GJK implementation, however these scripts are trivial to understand. Use them to learn and rewrite your own to suit your project.
 
+![sample_scene_2](./img/scene_2.gif)
 
+In the example above the spheres are rigid, but bounce up thanks to a force applied upward. This magnitude of this force is proportional to the distance, computed with openGJK, between the plan and each sphere.
 
 ## Get started
 
